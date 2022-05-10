@@ -18,8 +18,13 @@ List of Microservices Used::
 
 ##### Auth Service 
 The key highlights of authentication service 
--###### Exception Handling:  It uses express-validation and Custom defined Errors subclass of Errors. The errors return are consistent and cover lots of scenarios for a production ready code.
--###### DataBaseIntegration: Defining interfaces for User model and User Document so that errors can be avoided. 
--###### Password Hashing   : Implementing password hasing using scrypt as Async. Password hasing improves security on response send to client. 
+- ###### Exception Handling:  It uses express-validation and Custom defined Errors subclass of Errors. The errors return are consistent and cover lots of scenarios for a production ready code.
+- ###### DataBaseIntegration: Defining interfaces for User model and User Document so that errors can be avoided. 
+- ###### Password Hashing   : Implementing password hasing using scrypt as Async. Password hasing improves security on response send to client. 
+##### Using user defined middlewares for Requestvalidation , Current-user , AuthRequired And using jwt token under cookies    
+- #####  Signup :  
+- #####  SignIn :
+- #####  Logout :
+- #####  CurrentUser :
 
 
