@@ -11,7 +11,7 @@
 - Kubernetes       :Running multiple container and networking  
 - Skaffold         :Automating Build process 
 - ingress nginx    :Load Balancer + ingress controller  (https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
-
+-Jest 			   : Library to write and run independent test cases locally.
 
 List of Microservices Used:: 
 - Auth Service        : User Login/Logout/Signup/Signin 
