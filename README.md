@@ -35,6 +35,14 @@ The key highlights of authentication service
 - ##### Logout :
 - ##### CurrentUser :
 
+##### Ticket Service
+
+The ticket service has api for create , update , get tickets with keyword title and cost.
+
+- Error First driven approach for ticket service. Writing out all test cases and then doing the implementation.
+
+- #####
+
 ##### Client Module
 
 This project does not heavily focus on frontent , the focus of this project is mostly on microservices .Next Js is used to make client in javascript. The main highlight of client app is using the Hooks & components and getInitial prop Method for server side prefetch of data.
