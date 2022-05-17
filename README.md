@@ -14,8 +14,8 @@
 - Skaffold :Automating Build process
 - ingress nginx :Load Balancer + ingress controller (https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 - Jest : Library to write and run independent test cases locally.
-
-List of Microservices Used::
+- NATS Streaming Server : Event Bus
+  List of Microservices Used::
 
 - Auth Service : User Login/Logout/Signup/Signin
 -
@@ -40,7 +40,10 @@ The key highlights of authentication service
 The ticket service has api for create , update , get tickets with keyword title and cost.
 
 - Error First driven approach for ticket service. Writing out all test cases and then doing the implementation.
-
+- NATS Streaming Server as Event Bus , Port Forwarding , Queue groups(make sure event goes to one instance)
+- Heart Beats and Event Miss Sceanrios
+- Handling Concurrency Issues : To have database in a service maintaining the Seq of events in Publisher , match the seq-1 in listener.
+- Using Fake or Mock fuctions from jest to simulate the nats publisher command.
 - #####
 
 ##### Client Module
@@ -50,5 +53,7 @@ This project does not heavily focus on frontent , the focus of this project is m
 ##### Common Shared Library
 
 The main objective of shared library is to use the code in multiple services.
--Error Handling Modules
--Middlewares
+
+- Error Handling Modules
+- Middlewares
+- Events (Base class for publisher and listeners and Subjects Enums)
