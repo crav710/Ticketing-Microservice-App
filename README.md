@@ -18,7 +18,10 @@
   List of Microservices Used::
 
 - Auth Service : User Login/Logout/Signup/Signin
--
+- Ticket Service : Create/Edit/Delete/Freeze Ticket
+- Order Service : Create/Cancel Order
+- Payment Service :
+- Expiry Service : Timer for Payment for Order
 
 ##### Auth Service
 
@@ -46,9 +49,19 @@ The ticket service has api for create , update , get tickets with keyword title 
 - Using Fake or Mock fuctions from jest to simulate the nats publisher command.
 - #####
 
+##### Order Service
+
+The order service has reference to ticket. It handles creation and cancellation of ticket.
+
+- Publishing events upon creation and deletion.
+
 ##### Client Module
 
 This project does not heavily focus on frontent , the focus of this project is mostly on microservices .Next Js is used to make client in javascript. The main highlight of client app is using the Hooks & components and getInitial prop Method for server side prefetch of data.
+
+##### NATS STREAMING SERVER
+
+- Singleton Class for Nats streaming client
 
 ##### Common Shared Library
 
