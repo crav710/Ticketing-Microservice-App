@@ -54,6 +54,12 @@ The ticket service has api for create , update , get tickets with keyword title 
 The order service has reference to ticket. It handles creation and cancellation of ticket.
 
 - Publishing events upon creation and deletion.
+- Database sync using versions . Avoding Concurrency issues . Maintain versions in each database for every event process only if diff by 1. Otherwise reemit the event.
+- Use of Mongoose if current Update ( Optimistic Concurrency Control ).
+
+##### Expiry Module
+
+The Expiry Module recieves order creation event and waits till expiry and emits expiration completion event.
 
 ##### Client Module
 

@@ -4,7 +4,8 @@ import {
   validateRequest,
   NotFoundError,
   requireAuth,
-  NotAuthorizedError
+  NotAuthorizedError,
+  BadRequestError
 } from '@ticketzone/common';
 
 import {Ticket} from '../models/ticket';
@@ -27,6 +28,10 @@ router.put('/api/tickets/:id',requireAuth,[
   if(!ticket){
     throw new NotFoundError();
   }
+  
+  if(ticket.orderId){
+    throw new BadRequestError('Cannot edit a reseved ticket');
+  }
 
   if(ticket.userId !== req.currentUser!.id){
     throw new NotAuthorizedError();
@@ -41,7 +46,8 @@ router.put('/api/tickets/:id',requireAuth,[
     id     :ticket.id,
     title  :ticket.title,
     price  :ticket.price,
-    userId :ticket.userId
+    userId :ticket.userId,
+    version:ticket.version
   });
   res.send(ticket);
 });
