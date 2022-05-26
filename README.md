@@ -2,7 +2,9 @@
 
 ## Description
 
-#### Ticketing App is used for booking popular shows tickets. Users can post tickets to sell and purchase tickets.
+#### Ticketing App is used for booking popular shows tickets. Users can post tickets to sell and purchase tickets. Users are given a x minute window to purchase a ticket. The app features the use of different microservices interacting using event bus and avoid concurrency issues using versioning of events. The development is done using test based approach which helps in catching errors and sucessful pull requests on git.
+
+![](images/HomePage.jpg)
 
 ### Tech Stack
 
@@ -15,12 +17,13 @@
 - ingress nginx :Load Balancer + ingress controller (https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 - Jest : Library to write and run independent test cases locally.
 - NATS Streaming Server : Event Bus
+
   List of Microservices Used::
 
 - Auth Service : User Login/Logout/Signup/Signin
 - Ticket Service : Create/Edit/Delete/Freeze Ticket
 - Order Service : Create/Cancel Order
-- Payment Service :
+- Payment Service : Initiate Payment Using Stripe Api
 - Expiry Service : Timer for Payment for Order
 
 ##### Auth Service
@@ -47,7 +50,8 @@ The ticket service has api for create , update , get tickets with keyword title 
 - Heart Beats and Event Miss Sceanrios
 - Handling Concurrency Issues : To have database in a service maintaining the Seq of events in Publisher , match the seq-1 in listener.
 - Using Fake or Mock fuctions from jest to simulate the nats publisher command.
-- #####
+
+![](images/Ticket_Service.JPG)
 
 ##### Order Service
 
@@ -57,9 +61,13 @@ The order service has reference to ticket. It handles creation and cancellation 
 - Database sync using versions . Avoding Concurrency issues . Maintain versions in each database for every event process only if diff by 1. Otherwise reemit the event.
 - Use of Mongoose if current Update ( Optimistic Concurrency Control ).
 
+![](images/OrderService.JPG)
+
 ##### Expiry Service
 
 The Expiry Module recieves order creation event and waits till expiry and emits expiration completion event.
+![](images/ExpiryService.JPG)
+![](images/ExpiredOrder.JPG)
 
 ##### Payment Service
 
@@ -68,13 +76,17 @@ The payment service recieves an order created and order cancelled event and emit
 - Uses Stripe for payment transactions
 - Update the order status as complete after payment complete event.
 
+![](images/Payment_Service.JPG)
+
 ##### Client Module
 
 This project does not heavily focus on frontent , the focus of this project is mostly on microservices .Next Js is used to make client in javascript. The main highlight of client app is using the Hooks & components and getInitial prop Method for server side prefetch of data.
 
 ##### NATS STREAMING SERVER
 
-- Singleton Class for Nats streaming client
+- Singleton Class for Nats streaming client. Handles event flow from one service to other service. Maintains heartBeat mechanism. Re-Emmitting missing events on timer.
+
+![](images/EventFlowInServices.JPG)
 
 ##### Common Shared Library
 
