@@ -57,9 +57,16 @@ The order service has reference to ticket. It handles creation and cancellation 
 - Database sync using versions . Avoding Concurrency issues . Maintain versions in each database for every event process only if diff by 1. Otherwise reemit the event.
 - Use of Mongoose if current Update ( Optimistic Concurrency Control ).
 
-##### Expiry Module
+##### Expiry Service
 
 The Expiry Module recieves order creation event and waits till expiry and emits expiration completion event.
+
+##### Payment Service
+
+The payment service recieves an order created and order cancelled event and emits payment complete event.
+
+- Uses Stripe for payment transactions
+- Update the order status as complete after payment complete event.
 
 ##### Client Module
 
