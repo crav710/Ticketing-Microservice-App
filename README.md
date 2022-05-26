@@ -86,7 +86,7 @@ This project does not heavily focus on frontent , the focus of this project is m
 
 - Singleton Class for Nats streaming client. Handles event flow from one service to other service. Maintains heartBeat mechanism. Re-Emmitting missing events on timer.
 
-![](images/EventFlowInServices.JPG)
+![](images/EventFlowsInServices.JPG)
 
 ##### Common Shared Library
 
